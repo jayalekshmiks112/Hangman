@@ -12,7 +12,7 @@ def start():
     global original
     print("\nWelcome to Hangman game\n===================\n")
     time.sleep(1)
-    print("Choose the topic: \n1. Literature\n2. Sports\n3. History\n4. Films")
+    print("Choose the topic: \n1. Literature\n2. Sports\n3. History\n4. Movies")
     n=int(input())
     if (n==1):
         f1=io.open('literature.txt','r', encoding="utf8")
@@ -21,6 +21,7 @@ def start():
         word=(random.choice(litlist))
         original=word
         word=word.lower()
+        time.sleep(1)
         print("Guess the author")
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
@@ -34,12 +35,44 @@ def start():
         word=(random.choice(litlist))
         original=word
         word=word.lower()
+        time.sleep(1)
         print("Guess the sport/adventure")
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
         game()
         guessed=[]
 
+    if (n==3):
+        f3=io.open('kpolitics.txt','r', encoding="utf8")
+        line3=f3.readline()
+        litlist=line3.split()
+        word=(random.choice(litlist))
+        original=word
+        word=word.lower()
+        time.sleep(1)
+        print("Guess the chief minister in kerala politics")
+        print("The word contains ",len(word)," letters")
+        show ='_'*(len(word))
+        game()
+        guessed=[]
+
+    if (n==4):
+        f4=io.open('movies.txt','r', encoding="utf8")
+        line4=f4.readline()
+        litlist=line4.split()
+        word=(random.choice(litlist))
+        original=word
+        word=word.lower()
+        time.sleep(1)
+        print("Guess the famous english movie")
+        print("The word contains ",len(word)," letters")
+        show ='_'*(len(word))
+        game()
+        guessed=[]
+    
+    else:
+        print("Inavlid choice!Please enter a choice from 1-4")
+        start()
 
 def call_again():
     global count
