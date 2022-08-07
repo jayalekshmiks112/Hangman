@@ -1,10 +1,8 @@
 from curses.ascii import isalpha
-#from _curses import *
 import random
 import io
 import time
 #To use sleep so to beautify the execution
-#global guessed
 count =0
 
 def start():
@@ -12,8 +10,7 @@ def start():
     global word
     global guessed
     global original
-    #global play
-    print("Welcome to Hangman game ")
+    print("\nWelcome to Hangman game\n===================\n")
     time.sleep(1)
     print("Choose the topic: \n1. Literature\n2. Sports\n3. History\n4. Films")
     n=int(input())
@@ -29,9 +26,24 @@ def start():
         show ='_'*(len(word))
         game()
         guessed=[]
-        #play=""
+
+    if (n==2):
+        f2=io.open('sports.txt','r', encoding="utf8")
+        line2=f2.readline()
+        litlist=line2.split()
+        word=(random.choice(litlist))
+        original=word
+        word=word.lower()
+        print("Guess the sport/adventure")
+        print("The word contains ",len(word)," letters")
+        show ='_'*(len(word))
+        game()
+        guessed=[]
+
 
 def call_again():
+    global count
+    count=0
     print("\nDo you want to play again?(y/n)")
     ch=input()
     if ch=='y':
@@ -39,6 +51,7 @@ def call_again():
         game()
     else:
         print("Thanks for playing.")
+        time.sleep(2)
         exit()
 
 
@@ -47,7 +60,6 @@ def game():
     global show
     guessed=[]
     global count
-    #show=str(show)
     l=[]
     print("\nThe word is "+show)
     letter=input("Enter the letter: ")
@@ -57,14 +69,7 @@ def game():
         l.extend([letter])
         pos = word.find(letter)
         word = word[:pos] + "_" + word[pos + 1:]
-        #show = show[:pos] + letter + show[pos + 1:]
-        #if pos in word =='_':
-        #  word[pos]=letter
-        #show=list(show)
         show=show[:pos] + letter + show[pos+1:]
-        #show[pos]=letter
-        #show=str(show)
-        #print(show + "\n")
         f=1
 
     elif letter in l:
@@ -169,7 +174,7 @@ def game():
                   "  |     |\n"
                   "  |     |\n"
                   "  |     O\n"
-                  "  |    /|\\n"
+                  "  |    /|\ \n"
                   "  |      \n"
                   "__|__\n")
             print("You have ",(9-count)," chances")
