@@ -5,6 +5,7 @@ import time
 
 count =0
 l=[]
+x=0
 
 def start():
     global show
@@ -13,8 +14,9 @@ def start():
     global original
     print("\nWelcome to Hangman game\n===================\n")
     time.sleep(1)
-    print("Choose the topic: \n1. Literature\n2. Sports\n3. History\n4. Movies")
+    print("Choose the topic: \n1. Literature\n2. Sports\n3. Kerala Politics\n4. Movies")
     n=int(input())
+    
     if (n==1):
         f1=io.open('literature.txt','r', encoding="utf8")
         line1=f1.readline()
@@ -94,17 +96,20 @@ def game():
     global show
     global l
     global count
+    global x
     print("\nThe word is "+show)
     letter=input("Enter the letter: ")
     f=0
-    if letter in word:
-        l.extend([letter])
-        pos = word.find(letter)
-        word = word[:pos] + "_" + word[pos + 1:]
-        show=show[:pos] + letter + show[pos+1:]
-        f=1
+    for i in range (len(word)):
+        if letter in word:
+            l.extend([letter])
+            pos = word.find(letter)
+            word = word[:pos] + "_" + word[pos + 1:]
+            show=show[:pos] + letter + show[pos+1:]
+            f=1
+            x=1
 
-    elif letter in l:
+    if (letter in l) and (x==0):
         print("Already guessed! Try another letter")
         f=2
 
@@ -233,8 +238,8 @@ def game():
                   "  |    /|\\ \n"
                   "  |    / \ \n"
                   "__|__\n")
-            #print("You have ",(9-count)," chances")
-    print(word)
+            
+    x=0
     if count==9:
         print("Game Over!!!\nBetter luck next time.\nThe word is "+original)
         call_again()
