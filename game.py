@@ -2,13 +2,14 @@ from curses.ascii import isalpha
 import random
 import io
 import time
-#To use sleep so to beautify the execution
+
 count =0
+l=[]
 
 def start():
     global show
     global word
-    global guessed
+    global l
     global original
     print("\nWelcome to Hangman game\n===================\n")
     time.sleep(1)
@@ -26,7 +27,7 @@ def start():
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
         game()
-        guessed=[]
+        l=[]
 
     if (n==2):
         f2=io.open('sports.txt','r', encoding="utf8")
@@ -40,7 +41,7 @@ def start():
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
         game()
-        guessed=[]
+        l=[]
 
     if (n==3):
         f3=io.open('kpolitics.txt','r', encoding="utf8")
@@ -54,7 +55,7 @@ def start():
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
         game()
-        guessed=[]
+        l=[]
 
     if (n==4):
         f4=io.open('movies.txt','r', encoding="utf8")
@@ -68,7 +69,7 @@ def start():
         print("The word contains ",len(word)," letters")
         show ='_'*(len(word))
         game()
-        guessed=[]
+        l=[]
     
     else:
         print("Inavlid choice!Please enter a choice from 1-4")
@@ -91,13 +92,11 @@ def call_again():
 def game():
     global word
     global show
-    guessed=[]
+    global l
     global count
-    l=[]
     print("\nThe word is "+show)
     letter=input("Enter the letter: ")
     f=0
-    
     if letter in word:
         l.extend([letter])
         pos = word.find(letter)
@@ -235,7 +234,7 @@ def game():
                   "  |    / \ \n"
                   "__|__\n")
             #print("You have ",(9-count)," chances")
-    
+    print(word)
     if count==9:
         print("Game Over!!!\nBetter luck next time.\nThe word is "+original)
         call_again()
