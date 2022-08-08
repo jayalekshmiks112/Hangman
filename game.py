@@ -79,7 +79,11 @@ def start():
 
 def call_again():
     global count
+    global x
+    global l
     count=0
+    x=0
+    l=[]
     print("\nDo you want to play again?(y/n)")
     ch=input()
     if ch=='y':
