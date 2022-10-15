@@ -1,4 +1,4 @@
-from curses.ascii import isalpha
+#from curses.ascii import isalpha
 import random
 import io
 import time
